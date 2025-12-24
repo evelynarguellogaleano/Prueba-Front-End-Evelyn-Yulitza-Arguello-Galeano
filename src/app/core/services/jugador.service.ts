@@ -54,7 +54,7 @@ export class JugadorService {
                         codigo: 'JUG005',
                         nombres: 'Luis Fernando Díaz',
                         camiseta: '23',
-                        equipo: 'Águilas Doradas',
+                        equipo: 'Boca Juniors',
                         campeonatos: '2'
                     }
                 ];

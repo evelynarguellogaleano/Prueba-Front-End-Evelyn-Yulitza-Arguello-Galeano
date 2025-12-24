@@ -17,5 +17,4 @@ export const EQUIPOS: string[] = [
     'Bayern Múnich',
     'Millonarios FC',
     'Deportivo Cali',
-    'Águilas Doradas'
 ].sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
