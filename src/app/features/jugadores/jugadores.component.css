@@ -1,4 +1,3 @@
-/* Main Container */
 .jugadores-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -16,7 +15,6 @@ h2 {
     margin: 0;
 }
 
-/* Form Panel */
 .form-section {
     background: var(--bg-surface);
     padding: 2.5rem;

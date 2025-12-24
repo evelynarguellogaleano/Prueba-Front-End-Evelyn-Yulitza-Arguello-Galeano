@@ -1,38 +1,18 @@
-/* Global Design System - Sobrio & Moderno */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Paleta Sobria (Slate) */
     --bg-body: #f8fafc;
-    /* Fondo gris muy claro */
     --bg-surface: #ffffff;
-    /* Superficies blancas */
     --bg-subtle: #f1f5f9;
-    /* Fondo sutil para inputs/hovers */
-
-    /* Tipografía */
     --text-main: #0f172a;
-    /* Casi negro (Slate 900) */
     --text-muted: #64748b;
-    /* Gris medio (Slate 500) */
     --text-light: #94a3b8;
-    /* Gris claro */
-
-    /* Acento (Azul Índigo Profundo - Elegante) */
     --primary: #334155;
-    /* Slate 700 - Sobrio */
     --primary-hover: #1e293b;
-    /* Slate 800 */
     --accent: #4f46e5;
-    /* Índigo sutil para detalles */
-
-    /* Estados */
     --error: #ef4444;
     --success: #10b981;
     --border: #e2e8f0;
-    /* Bordes sutiles */
-
-    /* UI Tokens */
     --radius: 12px;
     --radius-sm: 8px;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -55,7 +35,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar minimalista */
 ::-webkit-scrollbar {
     width: 8px;
 }

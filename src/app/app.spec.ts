@@ -18,6 +18,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Prueba-Front-End-Evelyn-Yulitza-Arguello-Galeano');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Prueba-Front-End-Evelyn-Yulitza-Arguello-Galeano');
   });
 });

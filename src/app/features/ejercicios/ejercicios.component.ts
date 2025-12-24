@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+/**
+ * Componente que gestiona tres ejercicios de lógica:
+ * 1. Clasificación de Números Pares e Impares
+ * 2. Validador de Anagramas
+ * 3. Resolución del problema de la moneda pesada
+ */
 @Component({
     selector: 'app-ejercicios',
     standalone: true,
@@ -23,6 +29,12 @@ export class EjerciciosComponent {
     resultadoBalanza: string = '';
     errorBalanza: string = '';
 
+    /**
+     * Valida el input numérico en tiempo real
+     * Verifica que no se escriban más de 4 caracteres y que no sean negativos
+     * Actualiza el mensaje de error `errorNumero` si la validación falla
+     * @param valor El valor actual del input
+     */
     onNumeroChange(valor: string): void {
         this.errorNumero = '';
         let strVal = String(valor);
@@ -38,6 +50,10 @@ export class EjerciciosComponent {
         }
     }
 
+    /**
+     * Valida que los inputs de anagramas no contengan números
+     * Actualiza `errorAnagrama` si se detectan dígitos
+     */
     validarAnagramaTiempoReal(): void {
         this.errorAnagrama = '';
         const tieneNumeros = /\d/.test(this.palabra1) || /\d/.test(this.palabra2);
@@ -47,8 +63,12 @@ export class EjerciciosComponent {
         }
     }
 
+    /**
+     * Valida que los pesos de las monedas no sean negativos
+     */
     validarBalanzaTiempoReal(): void {
         this.errorBalanza = '';
+        // Validar si hay negativos
         for (let m of this.monedas) {
             if (m < 0) {
                 this.errorBalanza = 'No se permiten pesos negativos';
@@ -57,9 +77,12 @@ export class EjerciciosComponent {
         }
     }
 
+    /**
+     * Procesa la adición de un número a la lista de clasificados (Par o Impar)
+     * Realiza validaciones finales (vacío, no numérico, longitud, negativo) antes de agregar
+     */
     agregarNumero(): void {
         this.errorNumero = '';
-
         const inputStr = String(this.inputNumero);
 
         if (!inputStr || inputStr.trim() === '') {
@@ -91,6 +114,10 @@ export class EjerciciosComponent {
         this.inputNumero = '';
     }
 
+    /**
+     * Verifica si las dos palabras ingresadas (`palabra1` y `palabra2`) son anagramas
+     * Normaliza los textos (minúsculas, sin caracteres especiales ni números) y compara sus letras ordenadas
+     */
     verificarAnagrama(): void {
         this.errorAnagrama = '';
         this.resultadoAnagrama = '';
@@ -127,6 +154,11 @@ export class EjerciciosComponent {
         }
     }
 
+    /**
+     * Algoritmo para encontrar la moneda más pesada entre 9 opciones utilizando 2 pesadas simuladas
+     * Divide las monedas en grupos de 3 (A, B, C) y compara sus pesos totales para descartar grupos
+     * Asume que hay exactamente una moneda más pesada
+     */
     resolverBalanza(): void {
         this.errorBalanza = '';
         this.resultadoBalanza = '';
