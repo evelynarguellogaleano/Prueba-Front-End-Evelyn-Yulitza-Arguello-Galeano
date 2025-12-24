@@ -74,13 +74,10 @@ export class JugadorService {
         return this.jugadores$;
     }
 
-    // Returns true if success, false if code exists (and not updating same record)
     guardarJugador(jugador: Jugador, esEdicion: boolean, codigoOriginal?: string): boolean {
         const current = this.jugadoresSubject.getValue();
 
         if (esEdicion && codigoOriginal) {
-            // Update
-            // Check if new code exists in OTHER records
             if (jugador.codigo !== codigoOriginal && current.some(j => j.codigo === jugador.codigo)) {
                 return false;
             }
@@ -92,7 +89,6 @@ export class JugadorService {
                 return true;
             }
         } else {
-            // Create
             if (current.some(j => j.codigo === jugador.codigo)) {
                 return false;
             }

@@ -21,6 +21,8 @@ export class JugadoresComponent implements OnInit {
     editando: boolean = false;
     codigoOriginalEdicion: string | null = null;
     formVisible: boolean = false;
+    modalEliminarVisible: boolean = false;
+    jugadorAEliminar: string | null = null;
 
     constructor(private fb: FormBuilder, private jugadorService: JugadorService) {
         this.jugadorForm = this.fb.group({
@@ -106,8 +108,19 @@ export class JugadoresComponent implements OnInit {
     }
 
     eliminar(codigo: string): void {
-        if (confirm('¿Está seguro de eliminar este jugador?')) {
-            this.jugadorService.eliminarJugador(codigo);
+        this.jugadorAEliminar = codigo;
+        this.modalEliminarVisible = true;
+    }
+
+    confirmarEliminacion(): void {
+        if (this.jugadorAEliminar) {
+            this.jugadorService.eliminarJugador(this.jugadorAEliminar);
+            this.cerrarModalEliminar();
         }
+    }
+
+    cerrarModalEliminar(): void {
+        this.modalEliminarVisible = false;
+        this.jugadorAEliminar = null;
     }
 }
