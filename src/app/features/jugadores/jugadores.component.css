@@ -153,7 +153,6 @@ select.error {
     padding: 2rem;
 }
 
-/* Responsive */
 .table-section {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;

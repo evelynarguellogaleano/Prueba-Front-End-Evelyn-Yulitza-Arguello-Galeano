@@ -20,6 +20,45 @@ export class JugadorService {
             const stored = localStorage.getItem(this.STORAGE_KEY);
             if (stored) {
                 this.jugadoresSubject.next(JSON.parse(stored));
+            } else {
+                const jugadoresIniciales: Jugador[] = [
+                    {
+                        codigo: 'JUG001',
+                        nombres: 'Juan Pérez García',
+                        camiseta: '10',
+                        equipo: 'Atlético Nacional',
+                        campeonatos: '5'
+                    },
+                    {
+                        codigo: 'JUG002',
+                        nombres: 'María González López',
+                        camiseta: '7',
+                        equipo: 'América de Cali',
+                        campeonatos: '3'
+                    },
+                    {
+                        codigo: 'JUG003',
+                        nombres: 'Carlos Rodríguez Martínez',
+                        camiseta: '9',
+                        equipo: 'Deportivo Cali',
+                        campeonatos: ''
+                    },
+                    {
+                        codigo: 'JUG004',
+                        nombres: 'Ana Martínez Sánchez',
+                        camiseta: '11',
+                        equipo: 'Millonarios FC',
+                        campeonatos: ''
+                    },
+                    {
+                        codigo: 'JUG005',
+                        nombres: 'Luis Fernando Díaz',
+                        camiseta: '23',
+                        equipo: 'Águilas Doradas',
+                        campeonatos: '2'
+                    }
+                ];
+                this.guardarEnStorage(jugadoresIniciales);
             }
         }
     }

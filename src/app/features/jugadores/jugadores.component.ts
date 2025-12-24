@@ -20,7 +20,7 @@ export class JugadoresComponent implements OnInit {
     errorSubmit: string = '';
     editando: boolean = false;
     codigoOriginalEdicion: string | null = null;
-    formVisible: boolean = false; // Toggle for form
+    formVisible: boolean = false;
 
     constructor(private fb: FormBuilder, private jugadorService: JugadorService) {
         this.jugadorForm = this.fb.group({
@@ -39,7 +39,6 @@ export class JugadoresComponent implements OnInit {
         });
     }
 
-    // Validator: Alphanumeric, uppercase, no spaces/special
     private codigoValidator(control: AbstractControl): ValidationErrors | null {
         const value = control.value;
         if (!value) return null;
@@ -53,7 +52,6 @@ export class JugadoresComponent implements OnInit {
             this.mostrarCampeonatos = false;
             return;
         }
-        // Starts with 'a' or 'b' (case insensitive)
         const firstChar = equipo.toLowerCase().charAt(0);
         this.mostrarCampeonatos = firstChar === 'a' || firstChar === 'b';
 
