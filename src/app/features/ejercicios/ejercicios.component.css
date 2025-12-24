@@ -1,0 +1,125 @@
+.ejercicios-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+h1 {
+    text-align: center;
+    color: #1f2937;
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #2563eb;
+    font-size: 1.25rem;
+}
+
+/* 1. Numbers */
+.input-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lista-numeros {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.lista-numeros li {
+    background: #f3f4f6;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.9rem;
+}
+
+/* 2. Anagrams */
+.input-stack {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.resultado {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* 3. Coins */
+.coins-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.coin-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coin-input input {
+    width: 100%;
+    padding: 0.25rem;
+    text-align: center;
+}
+
+.coin-input label {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.btn-balance {
+    width: 100%;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.resultado-balanza {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #eff6ff;
+    border-radius: 6px;
+    color: #1e40af;
+    font-weight: bold;
+    text-align: center;
+}
+
+input,
+button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+
+button {
+    cursor: pointer;
+    background: #e5e7eb;
+    border: none;
+}
+
+button:hover {
+    background: #d1d5db;
+}

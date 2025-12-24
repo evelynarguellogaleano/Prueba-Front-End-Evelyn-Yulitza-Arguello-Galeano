@@ -1,0 +1,48 @@
+<div class="ejercicios-container fade-in">
+    <h1>Ejercicios de Lógica</h1>
+
+    <!-- 1. Par/Impar -->
+    <div class="card">
+        <h2>1. Números Pares e Impares</h2>
+        <p>Ingrese números de máximo 4 dígitos.</p>
+        <div class="input-row">
+            <input [(ngModel)]="inputNumero" placeholder="1234" maxlength="4" type="number">
+            <button (click)="agregarNumero()">Agregar</button>
+        </div>
+        <ul class="lista-numeros">
+            <li *ngFor="let item of numerosClasificados">
+                {{ item.valor }} - <strong>{{ item.tipo }}</strong>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 2. Anagramas -->
+    <div class="card">
+        <h2>2. Validador de Anagramas</h2>
+        <p>Ingrese dos palabras para comparar.</p>
+        <div class="input-stack">
+            <input [(ngModel)]="palabra1" placeholder="Palabra 1">
+            <input [(ngModel)]="palabra2" placeholder="Palabra 2">
+        </div>
+        <button (click)="verificarAnagrama()" class="btn-check">Verificar</button>
+        <p class="resultado" *ngIf="resultadoAnagrama">{{ resultadoAnagrama }}</p>
+    </div>
+
+    <!-- 3. Balanza -->
+    <div class="card">
+        <h2>3. La Moneda Pesada (Array 9)</h2>
+        <p>Defina los pesos de las 9 monedas (M1 a M9). Una debe ser más pesada.</p>
+
+        <div class="coins-grid">
+            <div *ngFor="let m of monedas; let i = index" class="coin-input">
+                <label>M{{i+1}}</label>
+                <input type="number" [(ngModel)]="monedas[i]">
+            </div>
+        </div>
+
+        <button (click)="resolverBalanza()" class="btn-balance">⚖️ Encontrar la Pesada</button>
+        <div class="resultado-balanza" *ngIf="resultadoBalanza">
+            {{ resultadoBalanza }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="jugadores-container fade-in">
+    <div class="header-actions">
+        <h1>Listado de Jugadores</h1>
+        <button *ngIf="!formVisible" (click)="mostrarFormulario()" class="btn-primary">
+            + Agregar Registro
+        </button>
+    </div>
+
+    <!-- Form Layout -->
+    <div *ngIf="formVisible" class="form-section fade-in">
+        <h2>{{ editando ? 'Editar Jugador' : 'Nuevo Jugador' }}</h2>
+
+        <div class="error-banner" *ngIf="errorSubmit">{{ errorSubmit }}</div>
+
+        <form [formGroup]="jugadorForm" (ngSubmit)="guardar()" class="modern-form">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Código *</label>
+                    <input formControlName="codigo" placeholder="Ej: A123 (Mayúsculas)"
+                        [class.error]="jugadorForm.get('codigo')?.invalid && jugadorForm.get('codigo')?.touched">
+
+                    <div class="error-msg" *ngIf="jugadorForm.get('codigo')?.touched">
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('required')">Requerido.</span>
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('maxlength')">Max 10 caracteres.</span>
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('invalidFormat')">Solo mayúsculas y números
+                            (sin espacios).</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombres *</label>
+                    <input formControlName="nombres" placeholder="Nombre completo">
+                    <div class="error-msg"
+                        *ngIf="jugadorForm.get('nombres')?.invalid && jugadorForm.get('nombres')?.touched">
+                        Requerido (Max 100).
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Equipo *</label>
+                    <select formControlName="equipo">
+                        <option value="" disabled>Seleccione Equipo</option>
+                        <option *ngFor="let eq of equipos" [value]="eq">{{ eq }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Camiseta</label>
+                    <input formControlName="camiseta" placeholder="Ej: 10">
+                </div>
+
+                <div class="form-group" *ngIf="mostrarCampeonatos">
+                    <label>Campeonatos *</label>
+                    <input formControlName="campeonatos" placeholder="Max 3 car." maxlength="3">
+                    <div class="error-msg"
+                        *ngIf="jugadorForm.get('campeonatos')?.invalid && jugadorForm.get('campeonatos')?.touched">
+                        Requerido para equipos 'A' o 'B'.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" (click)="cancelar()" class="btn-secondary">Cancelar</button>
+                <button type="submit" class="btn-primary" [disabled]="jugadorForm.invalid">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- List Layout -->
+    <div class="table-section">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Equipo</th>
+                    <th>Camiseta</th>
+                    <th>Campeonatos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let j of jugadores$ | async">
+                    <td>{{ j.codigo }}</td>
+                    <td>{{ j.nombres }}</td>
+                    <td>{{ j.equipo }}</td>
+                    <td>{{ j.camiseta || '-' }}</td>
+                    <td>{{ j.campeonatos || '-' }}</td>
+                    <td>
+                        <button (click)="cargarJugador(j)" class="btn-icon edit" title="Editar">✎</button>
+                        <button (click)="eliminar(j.codigo)" class="btn-icon delete" title="Eliminar">🗑</button>
+                    </td>
+                </tr>
+                <tr *ngIf="(jugadores$ | async)?.length === 0">
+                    <td colspan="6" class="empty-state">No hay jugadores registrados.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
