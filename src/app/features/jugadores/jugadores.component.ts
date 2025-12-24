@@ -28,7 +28,7 @@ export class JugadoresComponent implements OnInit {
         this.jugadorForm = this.fb.group({
             codigo: ['', [Validators.required, Validators.maxLength(10), this.codigoValidator]],
             nombres: ['', [Validators.required, Validators.maxLength(100)]],
-            camiseta: ['', [Validators.maxLength(2)]],
+            camiseta: ['', [Validators.maxLength(2), this.numericoValidator]],
             equipo: ['', Validators.required],
             campeonatos: ['']
         });
@@ -45,8 +45,28 @@ export class JugadoresComponent implements OnInit {
         const value = control.value;
         if (!value) return null;
 
-        const valid = /^[A-Z0-9]+$/.test(value);
-        return valid ? null : { invalidFormat: true };
+        // Solo mayúsculas y números
+        if (!/^[A-Z0-9]+$/.test(value)) {
+            return { invalidFormat: true };
+        }
+
+        // Debe contener al menos una letra Y al menos un número
+        const tieneLetras = /[A-Z]/.test(value);
+        const tieneNumeros = /[0-9]/.test(value);
+
+        if (!tieneLetras || !tieneNumeros) {
+            return { noAlfanumerico: true };
+        }
+
+        return null;
+    }
+
+    private numericoValidator(control: AbstractControl): ValidationErrors | null {
+        const value = control.value;
+        if (!value) return null;
+
+        const valid = /^[0-9]+$/.test(value);
+        return valid ? null : { soloNumeros: true };
     }
 
     private verificarCampeonatos(equipo: string): void {
@@ -59,7 +79,7 @@ export class JugadoresComponent implements OnInit {
 
         const campControl = this.jugadorForm.get('campeonatos');
         if (this.mostrarCampeonatos) {
-            campControl?.setValidators([Validators.required, Validators.maxLength(3)]);
+            campControl?.setValidators([Validators.required, Validators.maxLength(3), this.numericoValidator]);
         } else {
             campControl?.clearValidators();
             campControl?.setValue('');

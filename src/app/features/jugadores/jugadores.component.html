@@ -16,45 +16,77 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label>Código *</label>
-                    <input formControlName="codigo" placeholder="Ej: A123 (Mayúsculas)"
-                        [class.error]="jugadorForm.get('codigo')?.invalid && jugadorForm.get('codigo')?.touched">
+                    <input formControlName="codigo" placeholder="Ej: A123" type="text"
+                        [class.error]="jugadorForm.get('codigo')?.invalid && (jugadorForm.get('codigo')?.dirty || jugadorForm.get('codigo')?.touched)"
+                        [class.success]="jugadorForm.get('codigo')?.valid && jugadorForm.get('codigo')?.dirty">
 
-                    <div class="error-msg" *ngIf="jugadorForm.get('codigo')?.touched">
-                        <span *ngIf="jugadorForm.get('codigo')?.hasError('required')">Requerido.</span>
-                        <span *ngIf="jugadorForm.get('codigo')?.hasError('maxlength')">Max 10 caracteres.</span>
+                    <div class="error-msg"
+                        *ngIf="jugadorForm.get('codigo')?.invalid && (jugadorForm.get('codigo')?.dirty || jugadorForm.get('codigo')?.touched)">
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('required')">Campo requerido</span>
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('maxlength')">Máximo 10 caracteres</span>
                         <span *ngIf="jugadorForm.get('codigo')?.hasError('invalidFormat')">Solo mayúsculas y números
-                            (sin espacios).</span>
+                            (sin espacios)</span>
+                        <span *ngIf="jugadorForm.get('codigo')?.hasError('noAlfanumerico')">Debe contener al menos una
+                            letra y un número</span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Nombres *</label>
-                    <input formControlName="nombres" placeholder="Nombre completo">
+                    <input formControlName="nombres" placeholder="Nombre completo"
+                        [class.error]="jugadorForm.get('nombres')?.invalid && (jugadorForm.get('nombres')?.dirty || jugadorForm.get('nombres')?.touched)"
+                        [class.success]="jugadorForm.get('nombres')?.valid && jugadorForm.get('nombres')?.dirty">
+
                     <div class="error-msg"
-                        *ngIf="jugadorForm.get('nombres')?.invalid && jugadorForm.get('nombres')?.touched">
-                        Requerido (Max 100).
+                        *ngIf="jugadorForm.get('nombres')?.invalid && (jugadorForm.get('nombres')?.dirty || jugadorForm.get('nombres')?.touched)">
+                        <span *ngIf="jugadorForm.get('nombres')?.hasError('required')"> Campo requerido</span>
+                        <span *ngIf="jugadorForm.get('nombres')?.hasError('maxlength')"> Máximo 100 caracteres</span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Equipo *</label>
-                    <select formControlName="equipo">
+                    <select formControlName="equipo"
+                        [class.error]="jugadorForm.get('equipo')?.invalid && (jugadorForm.get('equipo')?.dirty || jugadorForm.get('equipo')?.touched)"
+                        [class.success]="jugadorForm.get('equipo')?.valid && jugadorForm.get('equipo')?.dirty">
                         <option value="" disabled>Seleccione Equipo</option>
                         <option *ngFor="let eq of equipos" [value]="eq">{{ eq }}</option>
                     </select>
+
+                    <div class="error-msg"
+                        *ngIf="jugadorForm.get('equipo')?.invalid && (jugadorForm.get('equipo')?.dirty || jugadorForm.get('equipo')?.touched)">
+                        <span> Debe seleccionar un equipo</span>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label>Camiseta</label>
-                    <input formControlName="camiseta" placeholder="Ej: 10">
+                    <input formControlName="camiseta" placeholder="Ej: 10" type="text"
+                        [class.error]="jugadorForm.get('camiseta')?.invalid && (jugadorForm.get('camiseta')?.dirty || jugadorForm.get('camiseta')?.touched)"
+                        [class.success]="jugadorForm.get('camiseta')?.valid && jugadorForm.get('camiseta')?.dirty">
+
+                    <div class="error-msg"
+                        *ngIf="jugadorForm.get('camiseta')?.invalid && (jugadorForm.get('camiseta')?.dirty || jugadorForm.get('camiseta')?.touched)">
+                        <span *ngIf="jugadorForm.get('camiseta')?.hasError('soloNumeros')"> Solo se permiten
+                            números</span>
+                        <span *ngIf="jugadorForm.get('camiseta')?.hasError('maxlength')"> Máximo 2 caracteres</span>
+                    </div>
                 </div>
 
                 <div class="form-group" *ngIf="mostrarCampeonatos">
                     <label>Campeonatos *</label>
-                    <input formControlName="campeonatos" placeholder="Max 3 car." maxlength="3">
+                    <input formControlName="campeonatos" placeholder="Max 3 car." maxlength="3" type="text"
+                        [class.error]="jugadorForm.get('campeonatos')?.invalid && (jugadorForm.get('campeonatos')?.dirty || jugadorForm.get('campeonatos')?.touched)"
+                        [class.success]="jugadorForm.get('campeonatos')?.valid && jugadorForm.get('campeonatos')?.dirty">
+
                     <div class="error-msg"
-                        *ngIf="jugadorForm.get('campeonatos')?.invalid && jugadorForm.get('campeonatos')?.touched">
-                        Requerido para equipos 'A' o 'B'.
+                        *ngIf="jugadorForm.get('campeonatos')?.invalid && (jugadorForm.get('campeonatos')?.dirty || jugadorForm.get('campeonatos')?.touched)">
+                        <span *ngIf="jugadorForm.get('campeonatos')?.hasError('required')"> Requerido para equipos 'A'
+                            o 'B'</span>
+                        <span *ngIf="jugadorForm.get('campeonatos')?.hasError('soloNumeros')"> Solo se permiten
+                            números</span>
+                        <span *ngIf="jugadorForm.get('campeonatos')?.hasError('maxlength')"> Máximo 3
+                            caracteres</span>
                     </div>
                 </div>
             </div>
@@ -97,11 +129,11 @@
         </table>
     </div>
 
-    <!-- Modal de confirmación de eliminación -->
+
     <div *ngIf="modalEliminarVisible" class="modal-overlay" (click)="cerrarModalEliminar()">
         <div class="modal-content" (click)="$event.stopPropagation()">
             <div class="modal-header">
-                <span class="modal-icon">⚠️</span>
+                <span class="modal-icon"></span>
                 <h3>Confirmar Eliminación</h3>
             </div>
             <div class="modal-body">
