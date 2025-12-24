@@ -59,8 +59,7 @@ select {
     font-size: 0.95rem;
     transition: all 0.2s ease;
     outline: none;
-    -webkit-appearance: none;
-    /* Mejor apariencia en iOS */
+
 }
 
 input:focus,
@@ -70,7 +69,6 @@ select:focus {
     box-shadow: 0 0 0 1px var(--text-main);
 }
 
-/* Validation Feedback */
 input.error {
     border-color: var(--error);
     background: #fff5f5;
@@ -97,7 +95,6 @@ input.success {
     padding-top: 1.5rem;
 }
 
-/* Table Section */
 .table-section {
     background: var(--bg-surface);
     border-radius: var(--radius);
@@ -106,7 +103,6 @@ input.success {
     overflow: hidden;
 }
 
-/* Scroll wrapper para móviles */
 .table-scroll {
     overflow-x: auto;
     width: 100%;
@@ -146,7 +142,6 @@ input.success {
     background: #f8fafc;
 }
 
-/* Actions */
 .btn-icon {
     background: none;
     border: none;
@@ -157,7 +152,6 @@ input.success {
     transition: all 0.2s;
     color: var(--text-muted);
     min-height: 44px;
-    /* Touch friendly */
     min-width: 44px;
 }
 
@@ -232,7 +226,6 @@ input.success {
     }
 }
 
-/* Responsive Styles - Mobile First Optimization */
 @media (max-width: 640px) {
     .jugadores-container {
         padding: 1rem 0.5rem;
@@ -257,20 +250,17 @@ input.success {
 
     .form-grid {
         grid-template-columns: 1fr;
-        /* Una columna en móvil */
         gap: 1.25rem;
     }
 
     input,
     select {
         min-height: 48px;
-        /* Touch friendly input */
         font-size: 1rem;
     }
 
     .form-actions {
         flex-direction: column-reverse;
-        /* Cancelar abajo, Guardar arriba */
         gap: 1rem;
     }
 

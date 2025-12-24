@@ -23,19 +23,15 @@ export class EjerciciosComponent {
     resultadoBalanza: string = '';
     errorBalanza: string = '';
 
-    // Validaciones en tiempo real
-    // Validaciones en tiempo real
     onNumeroChange(valor: string): void {
         this.errorNumero = '';
         let strVal = String(valor);
 
-        // Truncar a 4 dígitos
-        if (strVal.length > 4) {
-            strVal = strVal.slice(0, 4);
-        }
-
-        // Forzar actualización si se truncó
         this.inputNumero = strVal;
+
+        if (strVal.length > 4) {
+            this.errorNumero = 'Máximo 4 dígitos permitidos';
+        }
 
         if (strVal && Number(strVal) < 0) {
             this.errorNumero = 'No se permiten números negativos';
@@ -53,7 +49,6 @@ export class EjerciciosComponent {
 
     validarBalanzaTiempoReal(): void {
         this.errorBalanza = '';
-        // Validar si hay negativos
         for (let m of this.monedas) {
             if (m < 0) {
                 this.errorBalanza = 'No se permiten pesos negativos';
@@ -65,7 +60,6 @@ export class EjerciciosComponent {
     agregarNumero(): void {
         this.errorNumero = '';
 
-        // Asegurar que sea string para validación
         const inputStr = String(this.inputNumero);
 
         if (!inputStr || inputStr.trim() === '') {
@@ -111,7 +105,6 @@ export class EjerciciosComponent {
             return;
         }
 
-        // Validación: No permitir números
         const tieneNumeros = /\d/.test(this.palabra1) || /\d/.test(this.palabra2);
         if (tieneNumeros) {
             this.errorAnagrama = 'No se permiten números, solo letras';

@@ -1,4 +1,3 @@
-/* Container */
 .ejercicios-container {
     max-width: 700px;
     margin: 0 auto;
@@ -13,7 +12,6 @@ h1 {
     color: var(--text-main);
 }
 
-/* Minimalist Cards */
 .card {
     background: var(--bg-surface);
     padding: 2.5rem;
@@ -41,8 +39,7 @@ h1 {
     line-height: 1.6;
 }
 
-/* Form Elements */
-.input-row {
+    .input-row {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
@@ -65,8 +62,6 @@ input {
     font-size: 0.95rem;
     transition: all 0.2s ease;
     outline: none;
-    -webkit-appearance: none;
-    /* Elimina estilos nativos iOS */
 }
 
 input:focus {
@@ -95,7 +90,6 @@ button:hover {
     transform: translateY(-1px);
 }
 
-/* Exercise Specifics */
 .lista-numeros {
     list-style: none;
     padding: 0;
@@ -181,11 +175,9 @@ button:hover {
     border: 1px solid #fecdd3;
 }
 
-/* Responsive Styles - Mobile First Optimization */
 @media (max-width: 640px) {
     .ejercicios-container {
         padding: 1rem 0.75rem;
-        /* Menos padding lateral para ganar espacio */
         gap: 1.5rem;
     }
 
@@ -209,7 +201,6 @@ button:hover {
         margin-bottom: 1.5rem;
     }
 
-    /* Inputs y Botones más amigables al tacto */
     .input-row {
         flex-direction: column;
         gap: 0.75rem;
@@ -219,19 +210,15 @@ button:hover {
     button {
         width: 100%;
         min-height: 48px;
-        /* Altura mínima para touch targets */
         font-size: 1rem;
-        /* Evita zoom automático en iOS inputs */
     }
 
     .input-row button {
         margin-top: 0.25rem;
     }
 
-    /* Grid de monedas optimizado */
     .coins-grid {
         grid-template-columns: repeat(3, 1fr);
-        /* 3 columnas fijas para consistencia móvil */
         gap: 0.75rem;
     }
 
@@ -246,7 +233,6 @@ button:hover {
         min-height: 40px;
     }
 
-    /* Resultados */
     .lista-numeros {
         justify-content: flex-start;
         gap: 0.5rem;
@@ -254,7 +240,6 @@ button:hover {
 
     .lista-numeros li {
         width: 100%;
-        /* Lista vertical en móvil para mayor claridad */
         justify-content: space-between;
         padding: 0.6rem 1rem;
     }
