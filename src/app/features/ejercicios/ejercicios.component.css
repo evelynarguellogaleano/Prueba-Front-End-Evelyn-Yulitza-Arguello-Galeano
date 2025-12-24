@@ -1,7 +1,6 @@
 /* Container */
 .ejercicios-container {
     max-width: 700px;
-    /* Ancho más contenido para lectura cómoda */
     margin: 0 auto;
     display: grid;
     gap: 2.5rem;
@@ -66,6 +65,8 @@ input {
     font-size: 0.95rem;
     transition: all 0.2s ease;
     outline: none;
+    -webkit-appearance: none;
+    /* Elimina estilos nativos iOS */
 }
 
 input:focus {
@@ -86,6 +87,7 @@ button {
     transition: all 0.2s ease;
     width: auto;
     min-width: 120px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
@@ -97,25 +99,28 @@ button:hover {
 .lista-numeros {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 1.5rem 0 0 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
 }
 
 .lista-numeros li {
-    background: var(--bg-subtle);
-    padding: 0.4rem 1rem;
+    background: #e2e8f0;
+    padding: 0.5rem 1rem;
     border-radius: 99px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 0.9rem;
+    color: var(--text-main);
     border: 1px solid var(--border);
     display: flex;
     gap: 0.5rem;
+    align-items: center;
+    font-weight: 500;
 }
 
 .lista-numeros li strong {
-    color: var(--text-main);
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .result-box,
@@ -123,12 +128,12 @@ button:hover {
 .resultado-balanza {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #f8fafc;
-    border: 1px dashed var(--border);
+    background: #f1f5f9;
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     text-align: center;
     color: var(--text-main);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .coins-grid {
@@ -153,8 +158,8 @@ button:hover {
 
 .coin-input input {
     text-align: center;
-    padding: 0.5rem;
-    font-weight: 500;
+    padding: 0.5rem 0.25rem;
+    font-weight: 600;
 }
 
 .btn-balance,
@@ -165,26 +170,99 @@ button:hover {
 .error-message {
     font-size: 0.85rem;
     color: var(--error);
-    margin-top: -1rem;
-    /* Acercar al input */
-    margin-bottom: 2rem;
+    margin-top: -1.5rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background: #fff1f2;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #fecdd3;
 }
 
-/* Botón flotante para layout móvil */
+/* Responsive Styles - Mobile First Optimization */
 @media (max-width: 640px) {
+    .ejercicios-container {
+        padding: 1rem 0.75rem;
+        /* Menos padding lateral para ganar espacio */
+        gap: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .card h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Inputs y Botones más amigables al tacto */
     .input-row {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
-    .coins-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
+    input,
     button {
         width: 100%;
+        min-height: 48px;
+        /* Altura mínima para touch targets */
+        font-size: 1rem;
+        /* Evita zoom automático en iOS inputs */
+    }
+
+    .input-row button {
+        margin-top: 0.25rem;
+    }
+
+    /* Grid de monedas optimizado */
+    .coins-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 columnas fijas para consistencia móvil */
+        gap: 0.75rem;
+    }
+
+    .coin-input label {
+        font-size: 0.8rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .coin-input input {
+        width: 100%;
+        padding: 0.4rem;
+        min-height: 40px;
+    }
+
+    /* Resultados */
+    .lista-numeros {
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .lista-numeros li {
+        width: 100%;
+        /* Lista vertical en móvil para mayor claridad */
+        justify-content: space-between;
+        padding: 0.6rem 1rem;
+    }
+
+    .result-box,
+    .resultado,
+    .resultado-balanza {
+        font-size: 0.95rem;
+        padding: 0.75rem;
     }
 }

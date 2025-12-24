@@ -5,11 +5,11 @@
         <h2>1. Números Pares e Impares</h2>
         <p>Ingrese números de máximo 4 dígitos.</p>
         <div class="input-row">
-            <input [(ngModel)]="inputNumero" placeholder="1234" maxlength="4" type="number">
+            <input [ngModel]="inputNumero" (ngModelChange)="onNumeroChange($event)" placeholder="1234" type="number">
             <button (click)="agregarNumero()">Agregar</button>
         </div>
         <div *ngIf="errorNumero" class="error-message">
-             {{ errorNumero }}
+            {{ errorNumero }}
         </div>
         <ul class="lista-numeros">
             <li *ngFor="let item of numerosClasificados">
@@ -22,11 +22,11 @@
         <h2>2. Validador de Anagramas</h2>
         <p>Ingrese dos palabras para comparar.</p>
         <div class="input-stack">
-            <input [(ngModel)]="palabra1" placeholder="Palabra 1">
-            <input [(ngModel)]="palabra2" placeholder="Palabra 2">
+            <input [(ngModel)]="palabra1" placeholder="Palabra 1" (input)="validarAnagramaTiempoReal()">
+            <input [(ngModel)]="palabra2" placeholder="Palabra 2" (input)="validarAnagramaTiempoReal()">
         </div>
         <div *ngIf="errorAnagrama" class="error-message">
-             {{ errorAnagrama }}
+            {{ errorAnagrama }}
         </div>
         <button (click)="verificarAnagrama()" class="btn-check">Verificar</button>
         <p class="resultado" *ngIf="resultadoAnagrama">{{ resultadoAnagrama }}</p>
@@ -39,12 +39,12 @@
         <div class="coins-grid">
             <div *ngFor="let m of monedas; let i = index" class="coin-input">
                 <label>M{{i+1}}</label>
-                <input type="number" [(ngModel)]="monedas[i]">
+                <input type="number" [(ngModel)]="monedas[i]" (input)="validarBalanzaTiempoReal()">
             </div>
         </div>
 
         <div *ngIf="errorBalanza" class="error-message">
-             {{ errorBalanza }}
+            {{ errorBalanza }}
         </div>
 
         <button (click)="resolverBalanza()" class="btn-balance">Encontrar la Pesada</button>

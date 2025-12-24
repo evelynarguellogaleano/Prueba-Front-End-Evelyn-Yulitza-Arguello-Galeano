@@ -23,21 +23,64 @@ export class EjerciciosComponent {
     resultadoBalanza: string = '';
     errorBalanza: string = '';
 
+    // Validaciones en tiempo real
+    // Validaciones en tiempo real
+    onNumeroChange(valor: string): void {
+        this.errorNumero = '';
+        let strVal = String(valor);
+
+        // Truncar a 4 dígitos
+        if (strVal.length > 4) {
+            strVal = strVal.slice(0, 4);
+        }
+
+        // Forzar actualización si se truncó
+        this.inputNumero = strVal;
+
+        if (strVal && Number(strVal) < 0) {
+            this.errorNumero = 'No se permiten números negativos';
+        }
+    }
+
+    validarAnagramaTiempoReal(): void {
+        this.errorAnagrama = '';
+        const tieneNumeros = /\d/.test(this.palabra1) || /\d/.test(this.palabra2);
+
+        if (tieneNumeros) {
+            this.errorAnagrama = 'No se permiten números, solo letras';
+        }
+    }
+
+    validarBalanzaTiempoReal(): void {
+        this.errorBalanza = '';
+        // Validar si hay negativos
+        for (let m of this.monedas) {
+            if (m < 0) {
+                this.errorBalanza = 'No se permiten pesos negativos';
+                break;
+            }
+        }
+    }
+
     agregarNumero(): void {
         this.errorNumero = '';
 
-        if (!this.inputNumero || this.inputNumero.trim() === '') {
+        // Asegurar que sea string para validación
+        const inputStr = String(this.inputNumero);
+
+        if (!inputStr || inputStr.trim() === '') {
             this.errorNumero = 'Debe ingresar un número';
             return;
         }
 
-        const val = parseInt(this.inputNumero, 10);
+        const val = Number(inputStr);
+
         if (isNaN(val)) {
             this.errorNumero = 'Debe ingresar solo números';
             return;
         }
 
-        if (this.inputNumero.length > 4) {
+        if (inputStr.length > 4) {
             this.errorNumero = 'Máximo 4 dígitos permitidos';
             return;
         }
@@ -48,7 +91,7 @@ export class EjerciciosComponent {
         }
 
         this.numerosClasificados.push({
-            valor: this.inputNumero,
+            valor: inputStr,
             tipo: val % 2 === 0 ? 'Par' : 'Impar'
         });
         this.inputNumero = '';
@@ -68,12 +111,19 @@ export class EjerciciosComponent {
             return;
         }
 
+        // Validación: No permitir números
+        const tieneNumeros = /\d/.test(this.palabra1) || /\d/.test(this.palabra2);
+        if (tieneNumeros) {
+            this.errorAnagrama = 'No se permiten números, solo letras';
+            return;
+        }
+
         if (this.palabra1.trim().length < 2 || this.palabra2.trim().length < 2) {
             this.errorAnagrama = 'Las palabras deben tener al menos 2 caracteres';
             return;
         }
 
-        const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '').split('').sort().join('');
+        const normalize = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
         const s1 = normalize(this.palabra1);
         const s2 = normalize(this.palabra2);
 
