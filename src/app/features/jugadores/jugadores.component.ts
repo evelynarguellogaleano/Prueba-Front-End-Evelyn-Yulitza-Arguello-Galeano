@@ -4,11 +4,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractContro
 import { JugadorService } from '../../core/services/jugador.service';
 import { Jugador, EQUIPOS } from '../../core/models/jugador.interface';
 import { Observable } from 'rxjs';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
     selector: 'app-jugadores',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, ConfirmModalComponent],
     templateUrl: './jugadores.component.html',
     styleUrls: ['./jugadores.component.css']
 })

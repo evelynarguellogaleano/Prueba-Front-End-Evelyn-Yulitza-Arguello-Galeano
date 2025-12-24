@@ -1,12 +1,11 @@
 export interface Jugador {
-    codigo: string; // Alfanum, Mayus, Sin espacios, Max 10. Unique.
-    nombres: string; // Max 100
-    camiseta?: string; // Max 2
-    equipo: string; // Dropdown
-    campeonatos?: string; // Visible if Team start with 'a' or 'b'
+    codigo: string;
+    nombres: string;
+    camiseta?: string;
+    equipo: string;
+    campeonatos?: string;
 }
 
-// Helper for teams
 export const EQUIPOS: string[] = [
     'Barcelona',
     'Real Madrid',
@@ -15,5 +14,8 @@ export const EQUIPOS: string[] = [
     'América de Cali',
     'Chelsea',
     'Arsenal',
-    'Bayern Múnich'
-].sort(); // Sorted alphabetically ascending
+    'Bayern Múnich',
+    'Millonarios FC',
+    'Deportivo Cali',
+    'Águilas Doradas'
+].sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));

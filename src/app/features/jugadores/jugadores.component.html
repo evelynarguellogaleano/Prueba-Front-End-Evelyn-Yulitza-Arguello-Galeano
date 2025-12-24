@@ -129,21 +129,9 @@
         </table>
     </div>
 
-
-    <div *ngIf="modalEliminarVisible" class="modal-overlay" (click)="cerrarModalEliminar()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
-            <div class="modal-header">
-                <span class="modal-icon"></span>
-                <h3>Confirmar Eliminación</h3>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de que desea eliminar este jugador?</p>
-                <p class="modal-warning">Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button (click)="cerrarModalEliminar()" class="btn-modal-cancel">Cancelar</button>
-                <button (click)="confirmarEliminacion()" class="btn-modal-confirm">Eliminar</button>
-            </div>
-        </div>
-    </div>
+    <app-confirm-modal [visible]="modalEliminarVisible" title="Confirmar Eliminación"
+        message="¿Está seguro de que desea eliminar este jugador?" warning="Esta acción no se puede deshacer."
+        confirmText="Eliminar" cancelText="Cancelar" (confirm)="confirmarEliminacion()"
+        (cancel)="cerrarModalEliminar()">
+    </app-confirm-modal>
 </div>

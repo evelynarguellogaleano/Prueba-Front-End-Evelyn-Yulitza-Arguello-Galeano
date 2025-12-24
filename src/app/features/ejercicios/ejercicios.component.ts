@@ -15,7 +15,7 @@ export class EjerciciosComponent {
     palabra1: string = '';
     palabra2: string = '';
     resultadoAnagrama: string = '';
-    monedas: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 2]; 
+    monedas: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 2];
     resultadoBalanza: string = '';
 
     agregarNumero(): void {
@@ -40,9 +40,9 @@ export class EjerciciosComponent {
         const s2 = normalize(this.palabra2);
 
         if (s1 === s2 && this.palabra1 && this.palabra2) {
-            this.resultadoAnagrama = '✅ Son Anagramas';
+            this.resultadoAnagrama = 'Son Anagramas';
         } else {
-            this.resultadoAnagrama = '❌ No son Anagramas';
+            this.resultadoAnagrama = 'No son Anagramas';
         }
     }
 
@@ -52,27 +52,27 @@ export class EjerciciosComponent {
         const pesoB = M[3] + M[4] + M[5];
         if (pesoA > pesoB) {
             if (M[0] > M[1]) {
-                this.resultadoBalanza = 'La moneda más pesada es M1 (Pos 0)';
+                this.resultadoBalanza = 'La moneda más pesada es M1';
             } else if (M[1] > M[0]) {
-                this.resultadoBalanza = 'La moneda más pesada es M2 (Pos 1)';
+                this.resultadoBalanza = 'La moneda más pesada es M2';
             } else {
-                this.resultadoBalanza = 'La moneda más pesada es M3 (Pos 2)';
+                this.resultadoBalanza = 'La moneda más pesada es M3';
             }
         } else if (pesoB > pesoA) {
             if (M[3] > M[4]) {
-                this.resultadoBalanza = 'La moneda más pesada es M4 (Pos 3)';
+                this.resultadoBalanza = 'La moneda más pesada es M4';
             } else if (M[4] > M[3]) {
-                this.resultadoBalanza = 'La moneda más pesada es M5 (Pos 4)';
+                this.resultadoBalanza = 'La moneda más pesada es M5';
             } else {
-                this.resultadoBalanza = 'La moneda más pesada es M6 (Pos 5)';
+                this.resultadoBalanza = 'La moneda más pesada es M6';
             }
         } else {
             if (M[6] > M[7]) {
-                this.resultadoBalanza = 'La moneda más pesada es M7 (Pos 6)';
+                this.resultadoBalanza = 'La moneda más pesada es M7';
             } else if (M[7] > M[6]) {
-                this.resultadoBalanza = 'La moneda más pesada es M8 (Pos 7)';
+                this.resultadoBalanza = 'La moneda más pesada es M8';
             } else {
-                this.resultadoBalanza = 'La moneda más pesada es M9 (Pos 8)';
+                this.resultadoBalanza = 'La moneda más pesada es M9';
             }
         }
     }
