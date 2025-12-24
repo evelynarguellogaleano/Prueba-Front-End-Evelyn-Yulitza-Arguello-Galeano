@@ -123,3 +123,17 @@ button {
 button:hover {
     background: #d1d5db;
 }
+
+@media (max-width: 640px) {
+    .ejercicios-container {
+        padding: 1rem;
+    }
+
+    .coins-grid {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+
+    .card {
+        padding: 1rem;
+    }
+}
