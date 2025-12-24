@@ -58,9 +58,13 @@
     .navbar {
         flex-direction: column;
         gap: 1rem;
+        padding: 1rem;
+        /* Safely padded */
     }
 
     .content {
-        padding: 1rem;
+        padding: 0;
+        /* Let children handle their own padding */
+        width: 100%;
     }
 }
