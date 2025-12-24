@@ -12,20 +12,40 @@ import { FormsModule } from '@angular/forms';
 export class EjerciciosComponent {
     inputNumero: string = '';
     numerosClasificados: { valor: string, tipo: 'Par' | 'Impar' }[] = [];
+    errorNumero: string = '';
+
     palabra1: string = '';
     palabra2: string = '';
     resultadoAnagrama: string = '';
+    errorAnagrama: string = '';
+
     monedas: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 2];
     resultadoBalanza: string = '';
+    errorBalanza: string = '';
 
     agregarNumero(): void {
-        if (!this.inputNumero) return;
-        if (this.inputNumero.length > 4) {
-            alert('Max 4 digits allowed.');
+        this.errorNumero = '';
+
+        if (!this.inputNumero || this.inputNumero.trim() === '') {
+            this.errorNumero = 'Debe ingresar un número';
             return;
         }
+
         const val = parseInt(this.inputNumero, 10);
-        if (isNaN(val)) return;
+        if (isNaN(val)) {
+            this.errorNumero = 'Debe ingresar solo números';
+            return;
+        }
+
+        if (this.inputNumero.length > 4) {
+            this.errorNumero = 'Máximo 4 dígitos permitidos';
+            return;
+        }
+
+        if (val < 0) {
+            this.errorNumero = 'No se permiten números negativos';
+            return;
+        }
 
         this.numerosClasificados.push({
             valor: this.inputNumero,
@@ -35,6 +55,24 @@ export class EjerciciosComponent {
     }
 
     verificarAnagrama(): void {
+        this.errorAnagrama = '';
+        this.resultadoAnagrama = '';
+
+        if (!this.palabra1 || this.palabra1.trim() === '') {
+            this.errorAnagrama = 'Debe ingresar la primera palabra';
+            return;
+        }
+
+        if (!this.palabra2 || this.palabra2.trim() === '') {
+            this.errorAnagrama = 'Debe ingresar la segunda palabra';
+            return;
+        }
+
+        if (this.palabra1.trim().length < 2 || this.palabra2.trim().length < 2) {
+            this.errorAnagrama = 'Las palabras deben tener al menos 2 caracteres';
+            return;
+        }
+
         const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '').split('').sort().join('');
         const s1 = normalize(this.palabra1);
         const s2 = normalize(this.palabra2);
@@ -47,9 +85,33 @@ export class EjerciciosComponent {
     }
 
     resolverBalanza(): void {
+        this.errorBalanza = '';
+        this.resultadoBalanza = '';
+
+        for (let i = 0; i < this.monedas.length; i++) {
+            if (this.monedas[i] === null || this.monedas[i] === undefined || isNaN(this.monedas[i])) {
+                this.errorBalanza = `Debe definir el peso de la moneda M${i + 1}`;
+                return;
+            }
+        }
+
+        for (let i = 0; i < this.monedas.length; i++) {
+            if (this.monedas[i] <= 0) {
+                this.errorBalanza = 'Todos los pesos deben ser números positivos';
+                return;
+            }
+        }
+
+        const pesosPesados = this.monedas.filter((m, i, arr) => m > Math.min(...arr));
+        if (pesosPesados.length === 0 || this.monedas.every(m => m === this.monedas[0])) {
+            this.errorBalanza = 'Debe haber al menos una moneda más pesada que las demás';
+            return;
+        }
+
         const M = [...this.monedas];
         const pesoA = M[0] + M[1] + M[2];
         const pesoB = M[3] + M[4] + M[5];
+
         if (pesoA > pesoB) {
             if (M[0] > M[1]) {
                 this.resultadoBalanza = 'La moneda más pesada es M1';

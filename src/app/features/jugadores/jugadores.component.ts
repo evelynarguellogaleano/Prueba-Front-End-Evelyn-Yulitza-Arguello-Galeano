@@ -46,12 +46,10 @@ export class JugadoresComponent implements OnInit {
         const value = control.value;
         if (!value) return null;
 
-        // Solo mayúsculas y números
         if (!/^[A-Z0-9]+$/.test(value)) {
             return { invalidFormat: true };
         }
 
-        // Debe contener al menos una letra Y al menos un número
         const tieneLetras = /[A-Z]/.test(value);
         const tieneNumeros = /[0-9]/.test(value);
 

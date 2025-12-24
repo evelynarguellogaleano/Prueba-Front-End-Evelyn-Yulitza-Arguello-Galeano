@@ -1,43 +1,89 @@
-/* Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Global Design System - Sobrio & Moderno */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary: #3b82f6;
-    --secondary: #10b981;
-    --dark: #1f2937;
-    --light: #f3f4f6;
+    /* Paleta Sobria (Slate) */
+    --bg-body: #f8fafc;
+    /* Fondo gris muy claro */
+    --bg-surface: #ffffff;
+    /* Superficies blancas */
+    --bg-subtle: #f1f5f9;
+    /* Fondo sutil para inputs/hovers */
+
+    /* Tipografía */
+    --text-main: #0f172a;
+    /* Casi negro (Slate 900) */
+    --text-muted: #64748b;
+    /* Gris medio (Slate 500) */
+    --text-light: #94a3b8;
+    /* Gris claro */
+
+    /* Acento (Azul Índigo Profundo - Elegante) */
+    --primary: #334155;
+    /* Slate 700 - Sobrio */
+    --primary-hover: #1e293b;
+    /* Slate 800 */
+    --accent: #4f46e5;
+    /* Índigo sutil para detalles */
+
+    /* Estados */
+    --error: #ef4444;
+    --success: #10b981;
+    --border: #e2e8f0;
+    /* Bordes sutiles */
+
+    /* UI Tokens */
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    --font-inter: 'Inter', sans-serif;
 }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
-    color: #1f2937;
-    -webkit-font-smoothing: antialiased;
-}
-
-*,
-*::before,
-*::after {
+* {
     box-sizing: border-box;
 }
 
-html,
 body {
-    width: 100%;
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    font-family: var(--font-inter);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-body::-webkit-scrollbar {
-    display: none;
+/* Scrollbar minimalista */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-main);
 }
 
 .fade-in {
-    animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {

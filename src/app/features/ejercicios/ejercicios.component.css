@@ -1,250 +1,190 @@
+/* Container */
 .ejercicios-container {
-    max-width: 800px;
+    max-width: 700px;
+    /* Ancho más contenido para lectura cómoda */
     margin: 0 auto;
-    padding: 2rem;
     display: grid;
-    gap: 2rem;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.ejercicios-container::-webkit-scrollbar {
-    display: none;
+    gap: 2.5rem;
 }
 
 h1 {
     text-align: center;
-    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: var(--text-main);
 }
 
+/* Minimalist Cards */
 .card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e5e7eb;
+    background: var(--bg-surface);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .card h2 {
-    margin-top: 0;
-    color: #2563eb;
+    margin: 0 0 0.75rem 0;
     font-size: 1.25rem;
+    color: var(--text-main);
 }
 
+.card p {
+    color: var(--text-muted);
+    margin: 0 0 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Form Elements */
 .input-row {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.lista-numeros {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.lista-numeros li {
-    background: #f3f4f6;
-    padding: 0.25rem 0.75rem;
-    border-radius: 99px;
-    font-size: 0.9rem;
+    margin-bottom: 2rem;
 }
 
 .input-stack {
     display: grid;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-.resultado {
-    margin-top: 1rem;
-    font-weight: bold;
-    font-size: 1.1rem;
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--bg-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+input:focus {
+    background: white;
+    border-color: var(--text-muted);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.05);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: auto;
+    min-width: 120px;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Exercise Specifics */
+.lista-numeros {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.lista-numeros li {
+    background: var(--bg-subtle);
+    padding: 0.4rem 1rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lista-numeros li strong {
+    color: var(--text-main);
+}
+
+.result-box,
+.resultado,
+.resultado-balanza {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    color: var(--text-main);
+    font-weight: 500;
 }
 
 .coins-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .coin-input {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.coin-input input {
-    width: 100%;
-    padding: 0.25rem;
-    text-align: center;
+    gap: 0.5rem;
 }
 
 .coin-input label {
     font-size: 0.75rem;
-    color: #6b7280;
-}
-
-.btn-balance {
-    width: 100%;
-    background: #7c3aed;
-    color: white;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 6px;
-    cursor: pointer;
+    color: var(--text-muted);
     font-weight: 600;
 }
 
-.resultado-balanza {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #eff6ff;
-    border-radius: 6px;
-    color: #1e40af;
-    font-weight: bold;
+.coin-input input {
     text-align: center;
-}
-
-input,
-button {
     padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #d1d5db;
+    font-weight: 500;
 }
 
-button {
-    cursor: pointer;
-    background: #e5e7eb;
-    border: none;
+.btn-balance,
+.btn-check {
+    width: 100%;
 }
 
-button:hover {
-    background: #d1d5db;
+.error-message {
+    font-size: 0.85rem;
+    color: var(--error);
+    margin-top: -1rem;
+    /* Acercar al input */
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
+/* Botón flotante para layout móvil */
 @media (max-width: 640px) {
-    .ejercicios-container {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        overflow-x: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .ejercicios-container::-webkit-scrollbar {
-        display: none;
-    }
-
-    .card {
-        margin-bottom: 1.5rem;
-        padding: 1.25rem;
-    }
-
-    .card:last-child {
-        margin-bottom: 0;
-    }
-
     .input-row {
         flex-direction: column;
-    }
-
-    input,
-    button {
-        width: 100%;
-        height: 44px;
-    }
-
-    .coins-grid {
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-    }
-}
-
-@media (max-width: 340px) {
-    .ejercicios-container {
-        width: 100%;
-        padding: 0.5rem;
-        margin: 0;
-    }
-
-    .ejercicios-container h1 {
-        font-size: 1.2rem;
-        margin: 0.25rem 0 0.5rem;
-    }
-
-    .card {
-        width: calc(100% - 1rem);
-        max-width: 300px;
-        margin: 0 auto 1rem;
-        padding: 0.75rem;
-        border-radius: 4px;
-    }
-
-    .card h2 {
-        font-size: 0.95rem;
-        margin-bottom: 0.4rem;
-    }
-
-    .card p {
-        font-size: 0.75rem;
-        margin-bottom: 0.4rem;
-    }
-
-    .input-row {
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    input,
-    button {
-        height: 34px;
-        font-size: 0.8rem;
-        padding: 0.2rem 0.4rem;
-    }
-
-    .lista-numeros li {
-        padding: 0.15rem 0.5rem;
-        font-size: 0.75rem;
-    }
-
-    .resultado {
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
     }
 
     .coins-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 4px;
-        margin-bottom: 0.5rem;
+        gap: 1rem;
     }
 
-    .coin-input {
-        gap: 2px;
-    }
-
-    .coin-input label {
-        font-size: 0.7rem;
-    }
-
-    .coin-input input {
-        height: 30px;
-        font-size: 0.75rem;
-        padding: 0.1rem;
-    }
-
-    .btn-balance {
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .resultado-balanza {
-        padding: 0.5rem;
-        font-size: 0.85rem;
-        margin-top: 0.5rem;
+    button {
+        width: 100%;
     }
 }

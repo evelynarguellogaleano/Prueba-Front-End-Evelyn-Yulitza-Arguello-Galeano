@@ -8,6 +8,9 @@
             <input [(ngModel)]="inputNumero" placeholder="1234" maxlength="4" type="number">
             <button (click)="agregarNumero()">Agregar</button>
         </div>
+        <div *ngIf="errorNumero" class="error-message">
+             {{ errorNumero }}
+        </div>
         <ul class="lista-numeros">
             <li *ngFor="let item of numerosClasificados">
                 {{ item.valor }} - <strong>{{ item.tipo }}</strong>
@@ -22,6 +25,9 @@
             <input [(ngModel)]="palabra1" placeholder="Palabra 1">
             <input [(ngModel)]="palabra2" placeholder="Palabra 2">
         </div>
+        <div *ngIf="errorAnagrama" class="error-message">
+             {{ errorAnagrama }}
+        </div>
         <button (click)="verificarAnagrama()" class="btn-check">Verificar</button>
         <p class="resultado" *ngIf="resultadoAnagrama">{{ resultadoAnagrama }}</p>
     </div>
@@ -35,6 +41,10 @@
                 <label>M{{i+1}}</label>
                 <input type="number" [(ngModel)]="monedas[i]">
             </div>
+        </div>
+
+        <div *ngIf="errorBalanza" class="error-message">
+             {{ errorBalanza }}
         </div>
 
         <button (click)="resolverBalanza()" class="btn-balance">Encontrar la Pesada</button>
